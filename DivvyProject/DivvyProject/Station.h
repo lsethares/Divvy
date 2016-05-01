@@ -9,7 +9,7 @@ class Station
     private:
         int totalSpaces;
         int minSpaces;
-        //string name;
+        string name;
         Bikes bikeRack[30];
     public:
         Station();
