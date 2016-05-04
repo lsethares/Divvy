@@ -67,35 +67,27 @@ bool contains(vector<station> stationVector, string stationName)
 }
 
 void stationVectorMaker(){
-    int j = -1;
-    //vectorOfStationVectors.size()=18;
-    while (vectorOfStations.size()<=18)
+    int test;
+    while (vectorOfStations.size()!=18)
     {
-        for(int i = 0; i < instructionsVector.size(); i++)
-            {
-                if (contains(vectorOfStations, instructionsVector[i].checkOutStation))
-                    cout << vectorOfStations[j].name << " is already in the vectorOfStations!" << endl;
-                else
-                {
-                    vectorOfStations.push_back(trialStation);
-                    cout << trialStation.name << "stationVector just added to vectorOfStations" << endl;
-                }
-                /*
+        station firstStation;
+        string name = instructionsVector[0].checkOutStation;
+        //firstStation.name=instructionsVector[0].checkOutStation;
+        firstStation.numberOfBikes=20;
+        vectorOfStations.push_back(firstStation);
+
+        for(int i = 1; i <= instructionsVector.size(); i++)
+        {
             trialStation.name = instructionsVector[i].checkOutStation;
-            trialStation.numberOfBikes = 15;
-            while(j < vectorOfStations.size()){
-                if(trialStation.name == vectorOfStations[j].name){
-                    vectorOfStations.push_back(trialStation);
-                    cout << vectorOfStations[j].name << " is already in the vectorOfStations!" << endl;
-                    j++;
-                }
-                else{
-                    vectorOfStations.push_back(trialStation);
-                    cout << trialStation.name << "stationVector just added to vectorOfStations" << endl;
-                    j++;
-                }
+            trialStation.numberOfBikes = 20;
+            if (!contains(vectorOfStations, trialStation.name))
+            {
+                vectorOfStations.push_back(trialStation);
+                cout << trialStation.name << " just added to vectorOfStations" << endl;
+                test = 5;
             }
-            */
+            else
+                cout << trialStation.name << " is already in the vectorOfStations" << endl;
         }
     }
 }
@@ -181,6 +173,11 @@ int main(int argc, const char * argv[]) {
     instructionMaker();
     stationVectorMaker();
     clockCounter();
+    for (int i=0; i<vectorOfStations.size(); i++)
+    {
+        cout << vectorOfStations[i].name << endl;
+    }
+
 //    cout << vectorOfStationVectors[0].name << endl;
 //    << " has " << vectorOfStationVectors[0].numberOfBikes << "bikes in it."
 
