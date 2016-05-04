@@ -10,6 +10,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 //#include "Station.h";
 //#include "Bikes.h";
 using namespace std;
@@ -63,22 +64,23 @@ void instructionMaker(){
 }
 
 void stationVectorMaker(){
-    int j = -1;
     for(int i = 0; i < instructionsVector.size(); i++){
         trialStationVector.name = instructionsVector[i].checkOutStation;
         trialStationVector.numberOfBikes = 15;
-        while(j < vectorOfStationVectors.size()){
-            if(trialStationVector.name == vectorOfStationVectors[j].name){
-                vectorOfStationVectors.push_back(trialStationVector);
-                cout << vectorOfStationVectors[j].name << " is already in the vectorOfStationsVectors!" << endl;
+        vectorOfStationVectors.push_back(trialStationVector);
+        cout << trialStationVector.name << "stationVector just added to vectorOfStationVectors" << endl;
+    }
+}
+
+void stationChecker(){
+    for(int i = 0; i < vectorOfStationVectors.size(); i++){
+        for(int j = 0; j < vectorOfStationVectors.size(); j++){
+            while(vectorOfStationVectors[i].name == vectorOfStationVectors[j].name){
+                cout << vectorOfStationVectors[j].name << " just got erased!" << endl;
+                vectorOfStationVectors.erase(vectorOfStationVectors.begin() + j);
                 j++;
             }
-            else{
-                vectorOfStationVectors.push_back(trialStationVector);
-                cout << trialStationVector.name << "stationVector just added to vectorOfStationVectors" << endl;
-                j++;
-            }
-            }
+        }
     }
 }
 
@@ -89,6 +91,7 @@ void redistribute(stationVector fullVector){
             vectorOfStationVectors[i].numberOfBikes += 10;
             cout << "10 bikes were just received at " << vectorOfStationVectors[i].name << endl;
         }
+        else{}
     }
 }
 
@@ -119,6 +122,7 @@ void clockCounter(){
                         vectorOfStationVectors[j].numberOfBikes += 1;
                         if(vectorOfStationVectors[j].numberOfBikes >= 30){
                             cout << "10 bikes were just removed from " << vectorOfStationVectors[j].name << endl;
+                            //call the redistribute function which checks if any vector in the stationsVector is full, if one is it takes away 10 bikes and prints a message saying so, then it checks for a vector in the stationsVector that has less than 10 bikes and adds 10 bikes and prints a message saying so
                             redistribute(vectorOfStationVectors[j]);
                         }
                     }
@@ -127,7 +131,7 @@ void clockCounter(){
         //else do nothing
         else{}
         }
-        //call the redistribute function which checks if any vector in the stationsVector is full, if one is it takes away 10 bikes and prints a message saying so, then it checks for a vector in the stationsVector that has less than 10 bikes and adds 10 bikes and prints a message saying so
+
         minutes++;
     }
 }
@@ -161,7 +165,11 @@ int main(int argc, const char * argv[]) {
     file_to_array(dataArray, "divvyData.txt");
     instructionMaker();
     stationVectorMaker();
-    clockCounter();
+    stationChecker();
+    for(int i = 0; i < vectorOfStationVectors.size(); i++){
+        cout << vectorOfStationVectors[i].name << " printing the vectorOfStationVectors" << endl;
+    }
+//    clockCounter();
 //    cout << vectorOfStationVectors[0].name << endl;
 //    << " has " << vectorOfStationVectors[0].numberOfBikes << "bikes in it."
     
