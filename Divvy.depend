@@ -1,23 +1,22 @@
 # depslib dependency file v1.0
-1461359571 source:c:\users\leandra\documents\luc_\luc_spring16\cs\github\comp-271\divvy\main.cpp
+1462311024 source:c:\users\leandra\documents\luc_\luc_spring16\cs\github\comp-271\divvy\main.cpp
 	<iostream>
 	<fstream>
-	<cstring>
+	<sstream>
+	<vector>
 	<stdlib.h>
-	"Bikes.h"
-	"Station.h"
 
-1461359571 source:c:\users\leandra\documents\luc_\luc_spring16\cs\github\comp-271\divvy\src\bikes.cpp
+1462245033 source:c:\users\leandra\documents\luc_\luc_spring16\cs\github\comp-271\divvy\src\bikes.cpp
 	<iostream>
 	"Bikes.h"
 
 1461359571 c:\users\leandra\documents\luc_\luc_spring16\cs\github\comp-271\divvy\include\bikes.h
 	<string>
 
+1462245001 source:c:\users\leandra\documents\luc_\luc_spring16\cs\github\comp-271\divvy\src\station.cpp
+	"Station.h"
+
 1461367106 c:\users\leandra\documents\luc_\luc_spring16\cs\github\comp-271\divvy\include\station.h
 	<string>
 	"Bikes.h"
-
-1461359614 source:c:\users\leandra\documents\luc_\luc_spring16\cs\github\comp-271\divvy\src\station.cpp
-	"Station.h"
 
