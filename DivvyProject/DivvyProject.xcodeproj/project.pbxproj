@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6D58B1B1CDE518D008D9A5F /* leandramain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6D58B191CDE518D008D9A5F /* leandramain.cpp */; };
 		A6FDF83E1CCADBC50046107F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6FDF83D1CCADBC50046107F /* main.cpp */; };
 		A6FDF8451CCD2B9D0046107F /* Station.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6FDF8441CCD2B9D0046107F /* Station.cpp */; };
 		A6FDF8471CCD2BB60046107F /* Bikes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6FDF8461CCD2BB60046107F /* Bikes.cpp */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A6D58B191CDE518D008D9A5F /* leandramain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = leandramain.cpp; sourceTree = "<group>"; };
+		A6D58B1A1CDE518D008D9A5F /* leandramain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = leandramain.hpp; sourceTree = "<group>"; };
 		A6FDF83A1CCADBC50046107F /* DivvyProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DivvyProject; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6FDF83D1CCADBC50046107F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A6FDF8441CCD2B9D0046107F /* Station.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Station.cpp; sourceTree = "<group>"; };
@@ -64,6 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				A6FDF83D1CCADBC50046107F /* main.cpp */,
+				A6D58B191CDE518D008D9A5F /* leandramain.cpp */,
+				A6D58B1A1CDE518D008D9A5F /* leandramain.hpp */,
 				A6FDF8441CCD2B9D0046107F /* Station.cpp */,
 				A6FDF8461CCD2BB60046107F /* Bikes.cpp */,
 				A6FDF8481CCD2BCA0046107F /* Bikes.h */,
@@ -128,6 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D58B1B1CDE518D008D9A5F /* leandramain.cpp in Sources */,
 				A6FDF8451CCD2B9D0046107F /* Station.cpp in Sources */,
 				A6FDF8471CCD2BB60046107F /* Bikes.cpp in Sources */,
 				A6FDF83E1CCADBC50046107F /* main.cpp in Sources */,

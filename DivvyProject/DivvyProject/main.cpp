@@ -116,50 +116,135 @@ void stationStructReturn(){
     }
 }
 
-void addFiveBikes(stationStruct structWithRoom){
-    &structWithRoom.numberOfBikes = structWithRoom.numberOfBikes + 5;
-}
-
-void redistribute(stationStruct fullStruct){
-    fullStruct.numberOfBikes = fullStruct.numberOfBikes - 5;
-    for(int i = 0; i < vectorOfstationStructs.size(); i++){
-        if(vectorOfstationStructs[i].numberOfBikes > 20){
-            cout << "Redistribution Failed!" << endl;
-        }
-        else{
-//            cout << "Redistribution Success!" << endl;
-            addFiveBikes(vectorOfstationStructs[i]);
-            cout << "Move 5 bikes to: " << vectorOfstationStructs[i].name << endl;
-            i = vectorOfstationStructs.size();
-        }
-    }
-}
+//void addFiveBikes(stationStruct structWithRoom){
+//    structWithRoom.numberOfBikes = structWithRoom.numberOfBikes + 5;
+//}
+//
+//void redistribute(stationStruct fullStruct){
+//    fullStruct.numberOfBikes = fullStruct.numberOfBikes - 5;
+//    for(int i = 0; i < vectorOfstationStructs.size(); i++){
+//        if(vectorOfstationStructs[i].numberOfBikes > 20){
+//            cout << "Redistribution Failed!" << endl;
+//        }
+//        else{
+////            cout << "Redistribution Success!" << endl;
+//            addFiveBikes(vectorOfstationStructs[i]);
+//            cout << "Move 5 bikes to: " << vectorOfstationStructs[i].name << endl;
+//            i = vectorOfstationStructs.size();
+//        }
+//    }
+//}
+//
+//void checkOutEvents(int minutes){
+//    //look at each struct in the instructionsVector[i]
+//    for(int i = 0; i < instructionsVector.size(); i++){
+//        //if minutes == instructionVector[i].checkOutTime, look at each struct in the vectorOfstationStructs
+//        if(minutes == instructionsVector[i].checkOutTime){
+//            cout << instructionsVector[i].checkOutStation << " just had a bike checked out at " << minutes << " minutes."<< endl;
+//            for(int j = 0; j < vectorOfstationStructs.size(); j++){
+//                //if instructionVector[i].checkOutStation == stationsVector[j], stationsVector[j] goes down 1
+//                if(instructionsVector[i].checkOutStation.compare(vectorOfstationStructs[j].name) == 0){
+////                    cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " << vectorOfstationStructs[j].name << endl;
+//                    cout << vectorOfstationStructs[j].name << " just had " << vectorOfstationStructs[j].numberOfBikes << " bikes in it." << endl;
+//                    vectorOfstationStructs[j].numberOfBikes = vectorOfstationStructs[j].numberOfBikes - 1;
+//                    cout << vectorOfstationStructs[j].name << " now has " << vectorOfstationStructs[j].numberOfBikes << " bikes in it." << endl;
+//                    if(vectorOfstationStructs[j].numberOfBikes < 0){
+//                        cout << vectorOfstationStructs[j].name << " STATION IS NOW EMPTY: " << endl;
+//                        //                        redistribute(vectorOfstationStructs[j]);
+//                        //                            j = vectorOfstationStructs.size();
+//                    }
+//                    else{
+//                        cout << vectorOfstationStructs[j].name << " has " << vectorOfstationStructs[j].numberOfBikes << " left." << endl;
+//                        //                            j = vectorOfstationStructs.size();
+//                    }
+//                }
+//                else{
+////                    cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " <<vectorOfstationStructs[j].name << endl;
+//                    //                        j = vectorOfstationStructs.size();
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//void returnEvents(int minutes){
+//    for(int i = 0; i < instructionsVector.size(); i++){
+//        if(minutes == instructionsVector[i].returnTime){
+//            cout << instructionsVector[i].returnStation << " just had a bike returned at " << minutes << " minutes."<< endl;
+//            for(int j = 0; j < vectorOfstationStructs.size(); j++){
+//                if(instructionsVector[i].returnStation == vectorOfstationStructs[j].name){
+////                    cout << "A bike just got returned!" << endl;
+////                    cout << "instructionsVector[i].returnStation is: " << instructionsVector[i].returnStation << " and vectorOfstationStructs[j].name is: " << vectorOfstationStructs[j].name << endl;
+//                    cout << vectorOfstationStructs[j].name << " just had " << vectorOfstationStructs[j].numberOfBikes << " bikes in it." << endl;
+//                    vectorOfstationStructs[j].numberOfBikes = vectorOfstationStructs[j].numberOfBikes + 1;
+//                    cout << vectorOfstationStructs[j].name << " now has " << vectorOfstationStructs[j].numberOfBikes << " bikes in it." << endl;
+//                    if(vectorOfstationStructs[j].numberOfBikes > 30){
+//                        cout << vectorOfstationStructs[j].name << " STATION IS NOW FULL: " << endl;
+//                        vectorOfstationStructs[j].numberOfBikes = vectorOfstationStructs[j].numberOfBikes - 5;
+//                        for(int k = 0; k < vectorOfstationStructs.size(); k++){
+//                            if(vectorOfstationStructs[k].numberOfBikes > 20){
+//                                cout << "Redistribution Failed!" << endl;
+//                            }
+//                            else{
+//                                //            cout << "Redistribution Success!" << endl;
+//                                cout << "Move 5 bikes to: " << vectorOfstationStructs[k].name << endl;
+//                                stationStruct temp = vectorOfstationStructs[k];
+//                                cout << "Target Station to get 5 bikes is: " << temp.name << " which currently has only " << temp.numberOfBikes << endl;
+//                                temp.numberOfBikes = temp.numberOfBikes + 5;
+//                                k = vectorOfstationStructs.size();
+//                            }
+//                        }
+////                        redistribute(vectorOfstationStructs[j]);
+////                        cout << "Redistribution just took place." << endl;
+//                        //                            j = vectorOfstationStructs.size();
+//                    }
+//                    else{
+//                        cout << vectorOfstationStructs[j].name << " has " << vectorOfstationStructs[j].numberOfBikes << " left." << endl;
+//                        //                            j = vectorOfstationStructs.size();
+//                    }
+//                }
+//                else{
+////                    cout << "instructionsVector[i].returnStation is: " << instructionsVector[i].returnStation << " and vectorOfstationStructs[j].name is: " <<vectorOfstationStructs[j].name << endl;
+//                    //                        j = vectorOfstationStructs.size();
+//                }
+//            }
+//        }
+//    }
+//}
 
 void checkOutEvents(int minutes){
     //look at each struct in the instructionsVector[i]
     for(int i = 0; i < instructionsVector.size(); i++){
         //if minutes == instructionVector[i].checkOutTime, look at each struct in the vectorOfstationStructs
         if(minutes == instructionsVector[i].checkOutTime){
-            cout << instructionsVector[i].checkOutStation << " just had a bike checked out at " << minutes << " minutes."<< endl;
+            cout << instructionsVector[i].checkOutStation << " should have a bike checked out at " << minutes << " minutes." << endl;
             for(int j = 0; j < vectorOfstationStructs.size(); j++){
                 //if instructionVector[i].checkOutStation == stationsVector[j], stationsVector[j] goes down 1
                 if(instructionsVector[i].checkOutStation.compare(vectorOfstationStructs[j].name) == 0){
-//                    cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " << vectorOfstationStructs[j].name << endl;
-                    cout << vectorOfstationStructs[j].name << " just had " << vectorOfstationStructs[j].numberOfBikes << " bikes in it." << endl;
+                    //cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " << vectorOfStations[j].name << endl;
+                    //cout << vectorOfStations[j].name << " just had " << vectorOfStations[j].numberOfBikes << " bikes in it." << endl;
                     vectorOfstationStructs[j].numberOfBikes = vectorOfstationStructs[j].numberOfBikes - 1;
-                    cout << vectorOfstationStructs[j].name << " now has " << vectorOfstationStructs[j].numberOfBikes << " bikes in it." << endl;
-                    if(vectorOfstationStructs[j].numberOfBikes < 0){
-                        cout << vectorOfstationStructs[j].name << " STATION IS NOW EMPTY: " << endl;
-                        //                        redistribute(vectorOfstationStructs[j]);
-                        //                            j = vectorOfstationStructs.size();
+                    //cout << vectorOfStations[j].name << " now has " << vectorOfStations[j].numberOfBikes << " bikes in it." << endl;
+                    if (vectorOfstationStructs[j].numberOfBikes <= 10)
+                    {
+                        //move ten bikes to vectorOfStiaions[j]
+                        vectorOfstationStructs[j].numberOfBikes += 10;
+                        cout << "This station is running low, so ten bikes have been moved to " << vectorOfstationStructs[j].name << endl;
+                        //remove ten bikes from a random station
+                        int random = rand()%10 + 9;
+                        while(vectorOfstationStructs[random].numberOfBikes < 10)random = rand()%10+9;
+                        vectorOfstationStructs[random].numberOfBikes -= 10;
                     }
-                    else{
-                        cout << vectorOfstationStructs[j].name << " has " << vectorOfstationStructs[j].numberOfBikes << " left." << endl;
-                        //                            j = vectorOfstationStructs.size();
-                    }
+                    //                    if(vectorOfStations[j].numberOfBikes < 0){
+                    //                        cout << vectorOfStations[j].name << " STATION IS NOW EMPTY: \n" << endl;
+                    //                        //                        redistribute(vectorOfstationStructs[j]);
+                    //                        //                            j = vectorOfstationStructs.size();
+                    cout << vectorOfstationStructs[j].name << " has " << vectorOfstationStructs[j].numberOfBikes << " left.\n" << endl;
+                    //                            j = vectorOfstationStructs.size();
+                    
                 }
                 else{
-//                    cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " <<vectorOfstationStructs[j].name << endl;
+                    //cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " <<vectorOfStations[j].name << endl;
                     //                        j = vectorOfstationStructs.size();
                 }
             }
@@ -170,33 +255,46 @@ void checkOutEvents(int minutes){
 void returnEvents(int minutes){
     for(int i = 0; i < instructionsVector.size(); i++){
         if(minutes == instructionsVector[i].returnTime){
-            cout << instructionsVector[i].returnStation << " just had a bike returned at " << minutes << " minutes."<< endl;
+            cout << instructionsVector[i].returnStation << " should have a bike returned at " << minutes << " minutes." << endl;
             for(int j = 0; j < vectorOfstationStructs.size(); j++){
-                if(instructionsVector[i].returnStation == vectorOfstationStructs[j].name){
-//                    cout << "A bike just got returned!" << endl;
-//                    cout << "instructionsVector[i].returnStation is: " << instructionsVector[i].returnStation << " and vectorOfstationStructs[j].name is: " << vectorOfstationStructs[j].name << endl;
-                    cout << vectorOfstationStructs[j].name << " just had " << vectorOfstationStructs[j].numberOfBikes << " bikes in it." << endl;
+                //if instructionVector[i].returnStation == stationsVector[j], stationsVector[j] goes up 1
+                if(instructionsVector[i].returnStation.compare(vectorOfstationStructs[j].name) == 0){
+                    //cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " << vectorOfStations[j].name << endl;
+                    //cout << vectorOfStations[j].name << " just had " << vectorOfStations[j].numberOfBikes << " bikes in it." << endl;
                     vectorOfstationStructs[j].numberOfBikes = vectorOfstationStructs[j].numberOfBikes + 1;
-                    cout << vectorOfstationStructs[j].name << " now has " << vectorOfstationStructs[j].numberOfBikes << " bikes in it." << endl;
-                    if(vectorOfstationStructs[j].numberOfBikes > 30){
-                        cout << vectorOfstationStructs[j].name << " STATION IS NOW FULL: " << endl;
-                        redistribute(vectorOfstationStructs[j]);
-//                        cout << "Redistribution just took place." << endl;
-                        //                            j = vectorOfstationStructs.size();
+                    //cout << vectorOfStations[j].name << " now has " << vectorOfStations[j].numberOfBikes << " bikes in it." << endl;
+                    
+                    //redistribution
+                    if (vectorOfstationStructs[j].numberOfBikes > 30)
+                    {
+                        //move ten bikes to vectorOfStiaions[j]
+                        vectorOfstationStructs[j].numberOfBikes -= 10;
+                        cout << "This station is full, so ten bikes have been moved from " << vectorOfstationStructs[j].name << endl;
+                        //add ten bikes to a random station
+                        int random = rand()%10 + 9;
+                        while(vectorOfstationStructs[random].numberOfBikes > 20)random = rand()%10+9;
+                        vectorOfstationStructs[random].numberOfBikes += 10;
                     }
-                    else{
-                        cout << vectorOfstationStructs[j].name << " has " << vectorOfstationStructs[j].numberOfBikes << " left." << endl;
-                        //                            j = vectorOfstationStructs.size();
-                    }
+                    
+                    //                    if(vectorOfStations[j].numberOfBikes < 0){
+                    //                        cout << vectorOfStations[j].name << " STATION IS NOW EMPTY: \n" << endl;
+                    //                        redistribute(vectorOfstationStructs[j]);
+                    //                            j = vectorOfstationStructs.size();
+                    //                    }
+                    //                    else{
+                    cout << vectorOfstationStructs[j].name << " has " << vectorOfstationStructs[j].numberOfBikes << " left.\n" << endl;
+                    //                            j = vectorOfstationStructs.size();
+                    //                    }
                 }
                 else{
-//                    cout << "instructionsVector[i].returnStation is: " << instructionsVector[i].returnStation << " and vectorOfstationStructs[j].name is: " <<vectorOfstationStructs[j].name << endl;
+                    //cout << "instructionsVector[i].returnStation is: " << instructionsVector[i].returnStation << " and vectorOfstationStructs[j].name is: " <<vectorOfStations[j].name << endl;
                     //                        j = vectorOfstationStructs.size();
                 }
             }
         }
     }
 }
+
 
 void clockCounter(){
     int minutes = 0;
