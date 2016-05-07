@@ -38,7 +38,7 @@ station trialStation;
 void instructionMaker()
 {
     int i = 0;
-    while(i < 417)
+    while(i < 1880)
     {
         i = i + 4;
         char *checkOut = &dataVector[i+2][0u];
@@ -103,6 +103,8 @@ void checkOutEvents(int minutes)
                         cout << "This station is running low, so ten bikes have been moved to " << vectorOfStations[j].name << endl;
                         //remove ten bikes from a random station
                         int random = rand()%10 + 9;
+                        while (vectorOfStations[random].numberOfBikes < 10)
+                            random = rand()%10 + 9;
                         vectorOfStations[random].numberOfBikes -= 10;
                     }
                     cout << vectorOfStations[j].name << " has " << vectorOfStations[j].numberOfBikes << " left.\n" << endl;
@@ -135,6 +137,8 @@ void returnEvents(int minutes)
                         cout << "This station is full, so ten bikes have been moved from " << vectorOfStations[j].name << endl;
                         //add ten bikes to a random station
                         int random = rand()%10 + 9;
+                        while (vectorOfStations[random].numberOfBikes >= 20) //if adding 10 would fill the station
+                            random = rand()%10 + 9;
                         vectorOfStations[random].numberOfBikes += 10;
                     }
                     cout << vectorOfStations[j].name << " has " << vectorOfStations[j].numberOfBikes << " left.\n" << endl;
