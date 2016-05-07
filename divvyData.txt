@@ -297,7 +297,7 @@ Clark&Armitage,Michigan&Pearson,1700,1916,
 California&Byron,Kedzie&Foster,1351,1516,
 Kedzie&Foster,California&Byron,1041,1202,
 Kedzie&Foster,Clark&Randolf,1500,2019,
-Clark&Randolf,Kedzie&Foster,630,1257
+Clark&Randolf,Kedzie&Foster,630,1257,
 California&Byron,Michigan&Pearson,1640,2225,
 Michigan&Pearson,California&Byron,601,1250,
 PinGrove&IrvingPark,Kedzie&Foster,936,1211,

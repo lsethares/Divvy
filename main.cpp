@@ -14,11 +14,11 @@ string word;
 //create an integer called number to convert each word into
 int number;
 //create an empty array called dataArray to store data in from the .txt file
-string dataArray[0];
+string dataArray[500];
 //create a vector called dataVector to contain all elements from the .txt file
-vector<char*> dataVector;
+vector<string> dataVector;
 //create a vector called ClarkAndRandolf to store Bikes in
-vector<int> ClarkAndRandolf;
+//vector<int> ClarkAndRandolf;
 
 int counter = 0;
 
@@ -45,12 +45,14 @@ void instructionMaker(){
     int i = 0;
     while(i < 417){
         i = i + 4;
+        char *checkOut = &dataVector[i+2][0u];
+        char* returnT = &dataVector[i+3][0u];
         trialInstruction.checkOutStation = dataVector[i];
         trialInstruction.returnStation = dataVector[i+1];
-        trialInstruction.checkOutTime = ((atoi(dataVector[i+2]))/100)*60+(atoi(dataVector[i+2])%100);
-        trialInstruction.returnTime = ((atoi(dataVector[i+3]))/100)*60+(atoi(dataVector[i+3])%100);
+        trialInstruction.checkOutTime = ((atoi(checkOut))/100)*60+(atoi(checkOut)%100);
+        trialInstruction.returnTime = ((atoi(returnT))/100)*60+(atoi(returnT)%100);
         instructionsVector.push_back(trialInstruction);
-        cout << "instruction just added to instructionsVector" << endl;
+        //cout << "instruction just added to instructionsVector" << endl;
     }
 }
 
@@ -65,7 +67,7 @@ bool contains(vector<station> stationVector, string stationName)
     }
     return 1;
 }
-
+/*
 void stationVectorMaker(){
     int test;
     while (vectorOfStations.size()!=18)
@@ -91,6 +93,34 @@ void stationVectorMaker(){
         }
     }
 }
+*/
+
+void stationVectorMaker(){
+    for(int i = 0; i < instructionsVector.size(); i++){
+        trialStation.name = instructionsVector[i].checkOutStation;
+        trialStation.numberOfBikes = 15;
+        //add the modified struct to the vectorOfstationStructs
+        bool is_in = false;
+        for(int j = 0; j < vectorOfStations.size(); j++)
+        {
+            if(vectorOfStations[j].name == trialStation.name)
+            {
+                is_in=true;
+                j=vectorOfStations.size();
+            }
+        }
+
+        if(!is_in)
+        {
+            vectorOfStations.push_back(trialStation);
+            //cout << trialStation.name << "stationStruct just added to vectorOfstationStructs" << endl;
+        }
+        else{
+            //cout << trialStation.name << "already exists!" << endl;
+        }
+    }
+}
+
 
 void redistribute(station fullVector){
     for(int i = 0; i < vectorOfStations.size(); i++){
@@ -101,53 +131,84 @@ void redistribute(station fullVector){
         }
     }
 }
+void checkOutEvents(int minutes){
+    //look at each struct in the instructionsVector[i]
+    for(int i = 0; i < instructionsVector.size(); i++){
+        //if minutes == instructionVector[i].checkOutTime, look at each struct in the vectorOfstationStructs
+        if(minutes == instructionsVector[i].checkOutTime){
+            cout << instructionsVector[i].checkOutStation << " should have a bike checked out at " << minutes << " minutes.";
+            for(int j = 0; j < vectorOfStations.size(); j++){
+                //if instructionVector[i].checkOutStation == stationsVector[j], stationsVector[j] goes down 1
+                if(instructionsVector[i].checkOutStation.compare(vectorOfStations[j].name) == 0){
+                    //cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " << vectorOfStations[j].name << endl;
+                    //cout << vectorOfStations[j].name << " just had " << vectorOfStations[j].numberOfBikes << " bikes in it." << endl;
+                    vectorOfStations[j].numberOfBikes = vectorOfStations[j].numberOfBikes - 1;
+                    //cout << vectorOfStations[j].name << " now has " << vectorOfStations[j].numberOfBikes << " bikes in it." << endl;
+                    if(vectorOfStations[j].numberOfBikes < 0){
+                        cout << vectorOfStations[j].name << " STATION IS NOW EMPTY: \n" << endl;
+                        //                        redistribute(vectorOfstationStructs[j]);
+                        //                            j = vectorOfstationStructs.size();
+                    }
+                    else{
+                        cout << vectorOfStations[j].name << " has " << vectorOfStations[j].numberOfBikes << " left.\n" << endl;
+                        //                            j = vectorOfstationStructs.size();
+                    }
+                }
+                else{
+                    //cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " <<vectorOfStations[j].name << endl;
+                    //                        j = vectorOfstationStructs.size();
+                }
+            }
+        }
+    }
+}
+
+void returnEvents(int minutes){
+    for(int i = 0; i < instructionsVector.size(); i++){
+        if(minutes == instructionsVector[i].returnTime){
+            cout << instructionsVector[i].returnStation << " should have a bike returned at " << minutes << " minutes." <<endl;
+            for(int j = 0; j < vectorOfStations.size(); j++){
+                //if instructionVector[i].returnStation == stationsVector[j], stationsVector[j] goes up 1
+                if(instructionsVector[i].returnStation.compare(vectorOfStations[j].name) == 0){
+                    //cout << "instructionsVector[i].checkOutStation is: " << instructionsVector[i].checkOutStation << " and vectorOfstationStructs[j].name is: " << vectorOfStations[j].name << endl;
+                    //cout << vectorOfStations[j].name << " just had " << vectorOfStations[j].numberOfBikes << " bikes in it." << endl;
+                    vectorOfStations[j].numberOfBikes = vectorOfStations[j].numberOfBikes + 1;
+                    //cout << vectorOfStations[j].name << " now has " << vectorOfStations[j].numberOfBikes << " bikes in it." << endl;
+                    if(vectorOfStations[j].numberOfBikes < 0){
+                        cout << vectorOfStations[j].name << " STATION IS NOW EMPTY: \n" << endl;
+                        //                        redistribute(vectorOfstationStructs[j]);
+                        //                            j = vectorOfstationStructs.size();
+                    }
+                    else{
+                        cout << vectorOfStations[j].name << " has " << vectorOfStations[j].numberOfBikes << " left.\n" << endl;
+                        //                            j = vectorOfstationStructs.size();
+                    }
+                }
+                else{
+                    //cout << "instructionsVector[i].returnStation is: " << instructionsVector[i].returnStation << " and vectorOfstationStructs[j].name is: " <<vectorOfStations[j].name << endl;
+                    //                        j = vectorOfstationStructs.size();
+                }
+            }
+        }
+    }
+}
 
 void clockCounter(){
     int minutes = 0;
-    while(minutes < 2880){
-        //look at each struct in the instructionsVector[i]
-        for(int i = 0; i < instructionsVector.size(); i++){
-            //if minutes == instructionVector[i].checkOutTime, look at each vector in the stationsVector
-            if(minutes == instructionsVector[i].checkOutTime){
-                for(int j = 0; j < vectorOfStations.size(); j++){
-                    //if instructionVector[i].checkOutStation == stationsVector[j], stationsVector[j] goes down 1
-                    if(instructionsVector[i].checkOutStation == vectorOfStations[j].name){
-                        vectorOfStations[j].numberOfBikes -= 1;
-                    }
-                    if(vectorOfStations[j].numberOfBikes >= 30){
-                        cout << "10 bikes were just removed from " << vectorOfStations[j].name << endl;
-                        redistribute(vectorOfStations[j]);
-                    }
-                    else{}
-                }
-            }
-            //else if minutes == instructionsVector[i].returnTime, look at each vector in the stationsVector
-            else if(minutes == instructionsVector[i].returnTime){
-                for(int j = 0; j < vectorOfStations.size(); j++){
-                    //if instructionsVector[i].returnStation == stationsVector[j], stationsVector[j] goes up 1
-                    if(instructionsVector[i].returnStation == vectorOfStations[j].name){
-                        vectorOfStations[j].numberOfBikes += 1;
-                        if(vectorOfStations[j].numberOfBikes >= 30){
-                            cout << "10 bikes were just removed from " << vectorOfStations[j].name << endl;
-                            redistribute(vectorOfStations[j]);
-                        }
-                    }
-            }
-        }
-        //else do nothing
-        else{}
-        }
-        //call the redistribute function which checks if any vector in the stationsVector is full, if one is it takes away 10 bikes and prints a message saying so, then it checks for a vector in the stationsVector that has less than 10 bikes and adds 10 bikes and prints a message saying so
+    while(minutes < 1435){
+        checkOutEvents(minutes);
+        returnEvents(minutes);
         minutes++;
     }
 }
+
 
 //
 //
 //vector<instruction> instructionVector;
 
 //create a function called file_to_array that takes in a file name and an empty array and populates it with the data from the file provided
-void file_to_array(string arrayProvided[], string fileName){
+void file_to_array(vector<string> vectorProvided, string fileName){
     inFile.open(fileName);
     //if the file has a problem opening, output an error message
     if(!inFile.is_open())
@@ -158,26 +219,20 @@ void file_to_array(string arrayProvided[], string fileName){
     while(!inFile.eof()){
         getline(inFile, word, ',');
         cout << word;
-        char *cWord = &word[0u];
-        dataVector.push_back(cWord);
-        counter++;
+        dataVector.push_back(word);
+//        counter++;
+//        cout << counter << endl;
     }
-
+    cout << " \n" << endl;
     inFile.close();
 }
 
-
 int main(int argc, const char * argv[]) {
     // insert code here...
-    file_to_array(dataArray, "divvyData.txt");
+    file_to_array(dataVector, "divvyData.txt");
     instructionMaker();
     stationVectorMaker();
     clockCounter();
-    for (int i=0; i<vectorOfStations.size(); i++)
-    {
-        cout << vectorOfStations[i].name << endl;
-    }
-
 //    cout << vectorOfStationVectors[0].name << endl;
 //    << " has " << vectorOfStationVectors[0].numberOfBikes << "bikes in it."
 
